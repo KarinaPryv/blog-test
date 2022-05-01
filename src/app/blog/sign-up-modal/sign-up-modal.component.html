@@ -1,0 +1,41 @@
+<div class="modal fade" id="signUpModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign up</h5>
+            </div>
+            <form #signInForm="ngForm" (ngSubmit)="addNewUser(signInForm)">
+                <div class="form-group">
+                    <label for="titleInput">Username:</label>
+                    <input type="text" class="form-control" id="titleInput" name="username" required
+                        [(ngModel)]="user.username" [ngClass]="{'is-invalid': isIncorrectUsername}"
+                        (change)="checkAuthenticUsername()">
+                </div>
+                <div class="invalid-message text-light bg-danger" *ngIf="isIncorrectUsername">
+                    Username is already exists!
+                </div>
+                <div class="form-group">
+                    <label for="emailInput">Email:</label>
+                    <input type="email" class="form-control" id="emailInput" name="email" required
+                        [(ngModel)]="user.email" [ngClass]="{'is-invalid': isIncorrecrEmail}"
+                        (change)="checkAuthenticEmail()">
+                </div>
+                <div class="invalid-message text-light bg-danger" *ngIf="isIncorrecrEmail">
+                    This emailmail is already exists!
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Password:</label>
+                    <input type="password" class="form-control" id="passwordInput" name="password" required
+                        [(ngModel)]="user.password">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+                        [disabled]="!signInForm.form.valid && !isIncorrectUsername && !isIncorrecrEmail">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

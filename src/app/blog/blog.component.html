@@ -1,0 +1,17 @@
+<header class="d-flex justify-content-between p-3 bg-dark">
+    <h3 class="text-white fw-200">Angular block</h3>
+    <div class="btn-group" *ngIf="!authorizationStatus">
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signInModal">Sign in</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#signUpModal">Sign up</button>
+    </div>
+    <div class="btn-group" *ngIf="authorizationStatus">
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addPostModal" (click)="addPost()">Add post</button>
+        <div class="btn btn-warning">{{ authorizedUser.username }}</div>
+        <button type="button" class="btn btn-outline-warning" (click)="changeAuthorizationStatus()">Sign out</button>
+    </div>
+</header>
+
+<app-posts-list></app-posts-list>
+<app-add-post-modal></app-add-post-modal>
+<app-sign-up-modal></app-sign-up-modal>
+<app-sign-in-modal></app-sign-in-modal>
